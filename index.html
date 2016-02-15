@@ -1,7 +1,357 @@
 <!DOCTYPE html>
 <html>
+<head>
+<title>Drone Racing Competition</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
 <body>
-<h1>Australian Drone Racing Challenge</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<h1>Australian Drone Racing Challenge 2016</h1>
+<hr />
+<p><a href="http://droneracing.com.au/challenge/generalinformation.pdf">Download this page as a pdf.</a></p>
+<p>The Australian Drone Racing Challenge (ADRC) is an interschool competition which aims to educate students about drones and stimulate interest in this emerging technology.</p>
+<p>The inaugural challenge will be held in Brisbane in September 2016. All students enrolled at secondary or tertiary institutions in Australia are eligible to compete. Students may enter individually or as part of a team of up to four students.</p>
+<p>Students under the age of 18 must be accompanied at the event by a teacher or legal guardian.</p>
+<h2>Mission Statement</h2>
+<p>To develop and encourage an interest in civilian drone technology amongst Australian school and university students and to give these students the opportunity to gain experience and expertise in this emerging technology.</p>
+<h2>Overview</h2>
+<p>Students will compete in a tournament style competition. Up to four teams will compete in each race, with points allocated based on finishing position. At the end of the heats, the students with the most points will go on to compete in the finals.</p>
+<p>In addition to the races, students will create a document outlining the decisions they made in designing their drone and any obstacles they overcame during the process, in addition to a video documenting the build process and pilot training.</p>
+<h2>Safety</h2>
+<p>Micro drone racing is a safe activity provided some basic safety precautions are properly observed. A person is much more likely to be injured playing cricket or football.</p>
+<h2>Safety Rules</h2>
+<ol>
+<li>All propellers must be surrounded by appropriate shrouds.</li>
+<li>Diameter of props must not exceed 6cm.</li>
+<li>Weight of drone must must not exceed 200g.</li>
+<li>Official spec motors and LiPo battery must be used.</li>
+<li>Drone must pass a safety inspection immediately prior to races.</li>
+</ol>
+<h2>Additional Rules</h2>
+<ol>
+<li>All entrants must sign a declaration truthfully stating that the individual or team is responsible for the construction of the drone and any design changes.</li>
+</ol>
+<h2>Official ADRC Kit</h2>
+<p>This kit includes all of the parts needed to build a micro racing drone which meets ADRC specifications. It is strongly recommended that students start with this kit, learn to fly and then make design changes as they deem fit (whilst ensuring that these changes conform to the safety rules).</p>
+<p>The cost of this kit is $187.</p>
+<p><img src="http://i.imgur.com/K6fVRly.jpg" alt="ADRC kit" style="width: 49%;">
+<img src="http://i.imgur.com/JgpiiYF.jpg" alt="ADRC kit" style="width: 49%;"></p>
+<h2>Video</h2>
+<p>Students must submit a video outlining the design and build process in addition to flight training.</p>
+<p>The video should be between 1 and 5 minutes in duration and must be 100% original content created by the individual or team.</p>
+<p>ADRC reserves the right to use this video for educational and promotional purposes.</p>
+<h2>Allocation of Points</h2>
+<p>A trophy will be awarded to the individual or team which receives the highest number of points based on the following criteria:</p>
+<ol>
+<li>Drone performance (50 points)</li>
+<li>Document (25 points)</li>
+<li>Video (25 points)</li>
+</ol>
+<h2>Divisions</h2>
+<h3>Secondary</h3>
+<p>Maximum drone size of 150mm (measured diagonally motor-to-motor).</p>
+<p>Maximum prop diameter of 3&quot;.</p>
+<p>Maximum LiPo voltage of 11.1V (3S).</p>
+<p>Maximum drone weight of 250g.</p>
+<h3>Tertiary</h3>
+<p>Maximum drone size of 250mm (measured diagonally motor-to-motor).</p>
+<p>Maximum propeller diameter of 6&quot;.</p>
+<p>Maximum LiPo voltage of 16.8V (4S).</p>
+<p>Maximum drone weight of 500g.</p>
+<h2>Prizes</h2>
+<p>Prizes will be awarded to teams that finish in 1st, 2nd, 3rd and 4th places in both the Secondary and Tertiary divisions. The major trophy will be awarded to the team that finishes in 1st place.</p>
+<p>Other prizes will be awarded to the teams which score the highest number of points based on the criteria outlined in Allocation of Points.</p>
+<h2>Registration</h2>
+<p>Registration for the inaugural 2016 event will open on June 1, 2016 at <a href="http://droneracing.com.au">droneracing.com.au</a>. There will be an entry fee of $197 per team which includes the official ADRC drone kit. Each team can have up to 5 members.</p>
+<p>Places are limited so we recommend registering early to avoid disappointment.</p>
+<h2>Important Notice</h2>
+<p>Rules and other aspects of this competition may be altered leading up to the event. Please check <a href="http://droneracing.com.au">droneracing.com.au</a> for up-to-date information.</p>
+
 </body>
 </html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
